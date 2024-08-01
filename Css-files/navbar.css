@@ -24,13 +24,13 @@
   --a: white;
   --nav: black;
   --invert: invert(1);
+
+  /* Additional colors */
+  --light-red: #ffcccc;
+  --dark-red: #ff6666;
 }
 
 .dark-theme {
-
-  --a: rgb(183, 175, 175);
-  --drop-bg: #ffffff;
-  --nav: white;
   /* General Colors */
   --primary-bg-color: #212123;
   --primary-text-color: #ffffff;
@@ -62,6 +62,11 @@
   --bs-navbar-color: var(--a);
   background-color: var(--nav);
   gap: 10px;
+  padding: 10px 20px; /* Add some padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-toggler-icon {
@@ -80,20 +85,6 @@
   flex-grow: 0;
 }
 
-
-/* Navbar Links */
-.nav-link {
-  transition: color 0.3s, background-color 0.3s;
-}
-
-.nav-link:hover {
-  color: #fff;
-  transform: scale(1.1);
-  border-radius: 5px;
-}
-
-/* Center Links */
-
 ul {
   gap: 5px;
 }
@@ -104,9 +95,30 @@ ul {
   align-items: center;
 }
 
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.center-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.center-links .nav-item .nav-link {
+  color: var(--primary-text-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
 
 .center-links .nav-item .nav-link:hover {
-  color: #f13800e4;
+  background-color: var(--light-red);
+  color: var(--primary-text-color);
 }
 
 .center-links .nav-item .dropdown-menu {
@@ -136,31 +148,80 @@ ul {
 
 /* End Links */
 .end-links .nav-item .nav-link:hover {
+  background-color: var(--light-red);
   color: rgba(255, 183, 0, 0.705);
-  
 }
+
 
 .navbar-nav.center-links .active {
   color: #dc3545;
   border-bottom: 2px solid #dc3545;
-  gap:10px;
+  gap: 10px;
 }
 
 .navbar-nav.end-links .active  {
   color: rgba(255, 183, 0, 0.705);
   border-bottom: 2px solid rgba(255, 183, 0, 0.705);
-  gap:10px;
+  gap: 10px;
 }
+
 
 
 
 /* Dropdown Items */
 
+
 #theme-toggle-icon {
   width: 30px;
+  height: 30px;
   cursor: pointer;
+  position: relative;
+  transition: transform 0.3s; /* Add transition for smooth rotation */
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
+#theme-toggle-icon:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('moon-icon.png'); /* Path to the moon icon */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.dark-theme #theme-toggle-icon:before {
+  opacity: 0;
+}
+
+#theme-toggle-icon:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('sun-icon.png'); /* Path to the sun icon */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dark-theme #theme-toggle-icon:after {
+  opacity: 1;
+}
+
+#theme-toggle-icon:hover {
+  transform: rotate(20deg); /* Rotate icon on hover */
+}
+
+/* Dropdown */
 .center-links .nav-item .dropdown-menu {
   background-color: var(--drop-bg);
   color: var(--a);
@@ -173,82 +234,12 @@ ul {
   padding: 4px 8px;
   color: var(--a);
   font-size: 15px;
-
-  background-color: var(--background-color);
-
   transition: background-color 0.3s, transform 0.3s;
-
 }
 
 .dropdown-item:active {
   background-color: #dc3545;
 }
-
-:root {
-  --background-color: #fff;
-  --text-color: #000;
-  --button-bg: #D0EEB0;
-  --button-hover-bg: #59a10c;
-  --card-bg: rgba(0, 0, 0, 0.8);
-  --carousel-caption-bg: rgba(0, 0, 0, 0.7);
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.section {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.btn-card {
-  background-color: var(--button-bg);
-  color: var(--text-color);
-}
-
-.card-1::after {
-  background-color: var(--button-hover-bg);
-}
-
-.card-1  {
-  background-color: var(--carousel-caption-bg);
-}
-
-/* Dark mode styles */
-.about_us.dark-theme  {
-  --background-color: #000;
-  --text-color: #fff;
-  --button-bg: #555;
-  --button-hover-bg: #333;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --carousel-caption-bg: rgba(255, 255, 255, 0.7);
-}
-
-.about_us.dark-theme {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.about_us.dark-theme  .section {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.about_us.dark-theme  .btn-card {
-  background-color: var(--button-bg);
-  color: var(--text-color);
-}
-
-.about_us.dark-theme  .btn-card:hover {
-  background-color: var(--button-hover-bg);
-}
-
-.about_us.dark-theme  .carousel-caption {
-  background-color: var(--carousel-caption-bg);
-}
-
 
 .dropdown-item:hover {
   background-color: #007bff;
@@ -256,9 +247,34 @@ body {
   transform: scale(1.1);
 }
 
-/* Theme Toggle Icon */
-#theme-toggle-icon {
-  width: 30px;
-  cursor: pointer;
+/* Rate Us Button */
+.rate-us-btn {
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--dark-red);
+  color: var(--dark-red);
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+.rate-us-btn:hover {
+  background-color: var(--light-red);
+  color: var(--primary-text-color);
+}
+
+/* Popup */
+.popup {
+  display: none;
+  position: absolute;
+  top: 50px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--primary-text-color);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popup.show {
+  display: block;
+}
